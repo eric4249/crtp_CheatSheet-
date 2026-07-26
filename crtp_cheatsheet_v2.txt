@@ -6,7 +6,7 @@
   10.129.95.210    dc.htb.local
   10.129.95.210    forest.htb
 >>> Powershell
-
+  ipconfig /flushdns
 >>> 更新為powershell下載時用TLS1.2:
   [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
