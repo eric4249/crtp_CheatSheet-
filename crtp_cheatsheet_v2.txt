@@ -1,5 +1,5 @@
 >>> Set-ExecutionPolicy
-  Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process
+Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
 
 
 >>> Host的Path:
