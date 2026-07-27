@@ -5,10 +5,10 @@
 >>> Host的Path:
   C:\Windows\System32\drivers\etc
 >>> 最後加幾行:
-  10.129.95.210    htb.local
-  10.129.95.210    forest.htb.local
-  10.129.95.210    dc.htb.local
-  10.129.95.210    forest.htb
+  10.129.46.228    htb.local
+  10.129.46.228    forest.htb.local
+  10.129.46.228    dc.htb.local
+  10.129.46.228    forest.htb
 >>> Powershell
   ipconfig /flushdns
 
@@ -28,11 +28,12 @@
 
 >>> 開始枚舉:
   >>>> 獲取Domain SID: 
-    Get-DomainSID -Server 10.129.95.210
+    Get-DomainSID -Server 10.129.46.228
   >>>> 獲取DC資訊: 
-    Get-DomainController -Server 10.129.95.210
-  >>>> 列出Domain User: 
-    Get-DomainUser -Server 10.129.95.210 | Select-Object samaccountname, description, memberof | Format-Table -AutoSize
+    Get-DomainController -Server 10.129.46.228
+  >>>> 列出當前foothold的各種屬性Domain User: 
+  >>>> samaccountname, 
+    Get-DomainUser -Server 10.129.46.228 | Select-Object samaccountname, description, memberof | Format-Table -AutoSize
 
 
 >>> Mimikatz: 
