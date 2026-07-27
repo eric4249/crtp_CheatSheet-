@@ -20,6 +20,8 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
   Password: s3rvice
   Domain: htb.local
 
+>>> Set-ExecutionPolicy
+Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
 >>> 更新為powershell下載時用TLS1.2:
   [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 >>> PowerView:
