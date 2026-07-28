@@ -5,10 +5,10 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
 >>> Host的Path:
   C:\Windows\System32\drivers\etc
 >>> 最後加幾行:
-  10.129.47.23    htb.local
-  10.129.47.23    forest.htb.local
-  10.129.47.23    dc.htb.local
-  10.129.47.23    forest.htb
+  10.129.95.210    htb.local
+  10.129.95.210    forest.htb.local
+  10.129.95.210    dc.htb.local
+  10.129.95.210    forest.htb
 >>> Powershell
   ipconfig /flushdns
 
@@ -31,12 +31,12 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
 >>> 開始枚舉:
   最基本的東西: 
   >>>> 獲取Domain SID: 
-    Get-DomainSID -Server 10.129.47.23
+    Get-DomainSID -Server 10.129.95.210
   >>>> 獲取DC資訊: 
-    Get-DomainController -Server 10.129.47.23
+    Get-DomainController -Server 10.129.95.210
   >>>> 列出當前foothold的各種屬性Domain User: 
   >>>> samaccountname, 
-    Get-DomainUser -Server 10.129.47.23 | Select-Object samaccountname, description, memberof | Format-Table -AutoSize
+    Get-DomainUser -Server 10.129.95.210 | Select-Object samaccountname, description, memberof | Format-Table -AutoSize
 
   Domain內的狀況(# 重要群組成員):
   Get-DomainGroupMember -Identity "Domain Admins" -Server 10.129.95.210
