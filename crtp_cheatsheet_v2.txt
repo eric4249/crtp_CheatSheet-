@@ -13,15 +13,24 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
   ipconfig /flushdns
 
 
->>>獲取Forest Domain Shell:
-  runas /netonly /user:htb.local\svc-alfresco powershell
->>> 低權限Forest account:
-  Username: svc-alfresco
-  Password: s3rvice
-  Domain: htb.local
+原生Win10 Powershell: 
+  >>> Set DNS: 
+    Set-DnsClientServerAddress -InterfaceAlias "Ethernet0" -ServerAddresses "10.129.74.80"
+  >>> 停用IPv6: 
+    Disable-NetAdapterBinding -Name "Ethernet0" -ComponentID ms_tcpip6
+    Disable-NetAdapterBinding -Name "OpenVPN TAP-Windows6" -ComponentID ms_tcpip6
+  >>>獲取Forest Domain Shell:
+    runas /netonly /user:htb.local\svc-alfresco powershell
+  >>> 低權限Forest account:
+    Username: svc-alfresco
+    Password: s3rvice
+    Domain: htb.local
 
+
+>>> Powershell
+  ipconfig /flushdns
 >>> Set-ExecutionPolicy
-Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
+  Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
 >>> 更新為powershell下載時用TLS1.2:
   [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 >>> PowerView:
