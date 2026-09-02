@@ -5,17 +5,17 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
 >>> Host的Path:
   C:\Windows\System32\drivers\etc
 >>> 最後加幾行:
-  10.129.74.80    htb.local
-  10.129.74.80    forest.htb.local
-  10.129.74.80    dc.htb.local
-  10.129.74.80    forest.htb
+  10.129.95.210    htb.local
+  10.129.95.210    forest.htb.local
+  10.129.95.210    dc.htb.local
+  10.129.95.210    forest.htb
 >>> Powershell
   ipconfig /flushdns
 
 
 原生Win10 Powershell: 
   >>> Set DNS: 
-    Set-DnsClientServerAddress -InterfaceAlias "Ethernet0" -ServerAddresses "10.129.74.80"
+    Set-DnsClientServerAddress -InterfaceAlias "Ethernet0" -ServerAddresses "10.129.95.210"
   >>> 停用IPv6: 
     Disable-NetAdapterBinding -Name "Ethernet0" -ComponentID ms_tcpip6
     Disable-NetAdapterBinding -Name "OpenVPN TAP-Windows6" -ComponentID ms_tcpip6
@@ -45,18 +45,18 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
 >>> 開始枚舉:
   最基本的東西: 
   >>>> 獲取Domain SID: 
-    Get-DomainSID -Server 10.129.74.80
+    Get-DomainSID -Server 10.129.95.210
   >>>> 獲取DC資訊: 
-    Get-DomainController -Server 10.129.74.80
+    Get-DomainController -Server 10.129.95.210
   >>>> 列出當前foothold的各種屬性Domain User: 
   >>>> samaccountname, 
-    Get-DomainUser -Server 10.129.74.80 | Select-Object samaccountname, description, memberof | Format-Table -AutoSize
+    Get-DomainUser -Server 10.129.95.210 | Select-Object samaccountname, description, memberof | Format-Table -AutoSize
 
   Domain內的狀況(# 重要群組成員):
-  Get-DomainGroupMember -Identity "Domain Admins" -Server 10.129.74.80
-  Get-DomainGroupMember -Identity "Account Operators" -Server 10.129.74.80
-  Get-DomainGroupMember -Identity "Exchange Windows Permissions" -Server 10.129.74.80
-  Get-DomainGroupMember -Identity "Organization Management" -Server 10.129.74.80
+  Get-DomainGroupMember -Identity "Domain Admins" -Server 10.129.95.210
+  Get-DomainGroupMember -Identity "Account Operators" -Server 10.129.95.210
+  Get-DomainGroupMember -Identity "Exchange Windows Permissions" -Server 10.129.95.210
+  Get-DomainGroupMember -Identity "Organization Management" -Server 10.129.95.210
 
 
 >>> Mimikatz: 
