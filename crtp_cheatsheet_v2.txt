@@ -2,6 +2,9 @@
 Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
 
 
+>>>先Enable IPv6, 以連OpenVPN: 
+  Enable-NetAdapterBinding -Name "Ethernet0" -ComponentID ms_tcpip6
+  Enable-NetAdapterBinding -Name "OpenVPN TAP-Windows6" -ComponentID ms_tcpip6
 >>> Host的Path:
   C:\Windows\System32\drivers\etc
 >>> 最後加幾行:
