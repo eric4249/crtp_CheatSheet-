@@ -15,7 +15,8 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
 
 原生Win10 Powershell: 
   >>> Set DNS: 
-    Set-DnsClientServerAddress -InterfaceAlias "Ethernet0" -ServerAddresses "10.129.95.210"
+    Set-DnsClientServerAddress -InterfaceAlias "Ethernet0" -ServerAddresses "10.129.95.210", "8.8.8.8"
+    Set-DnsClientServerAddress -InterfaceAlias "OpenVPN TAP-Windows6" -ServerAddresses "10.129.95.210", "8.8.8.8"
   >>> 停用IPv6: 
     Disable-NetAdapterBinding -Name "Ethernet0" -ComponentID ms_tcpip6
     Disable-NetAdapterBinding -Name "OpenVPN TAP-Windows6" -ComponentID ms_tcpip6
