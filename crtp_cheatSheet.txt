@@ -1,3 +1,7 @@
+>>> 查看有沒有"有空格的service路徑"可插入exe, 以本地提權:
+  Get-WmiObject -Class win32_service
+
+
 >>> Set-ExecutionPolicy
   Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
 >>> 更新為powershell下載時用TLS1.2:
