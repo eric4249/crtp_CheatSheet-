@@ -7,7 +7,8 @@
     Get-WmiObject -Class win32_service | Select-Object pathname | Where-Object { $_.pathname -notlike '"*"' -and $_.pathname -like '* *' }
 
 >>> 查看有沒有WD (Everyone):
-  Get-Service | ForEach-Object { $sd = sc.exe sdshow $_.Name; if ($sd -match 'WD') { $_.Name; $sd } }
+  >>>> 一行過: 
+    Get-Service | ForEach-Object { $sd = sc.exe sdshow $_.Name 2>$null; if ($sd -match ';;;WD') { "Service: $($_.Name)"; $sd; '---' } }
     
 	
 
