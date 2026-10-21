@@ -1,8 +1,14 @@
 >>> 查看有沒有"有空格的service路徑"可插入exe, 以本地提權:
   >>>> 最初查看:
-    Get-WmiObject -Class win32_service
+    Get-WmiObject -Class win32_service | select pathname
   >>>> 查看準確service名字: 
   $serviceNameQuery = "<Name>"; Get-Service | Where-Object { $_.DisplayName -like "*$serviceNameQuery*" -or $_.Name -like "*$serviceNameQuery*" }
+  >>>> 一行過: 
+    Get-WmiObject -Class win32_service | Select-Object pathname | Where-Object { $_.pathname -notlike '"*"' -and $_.pathname -like '* *' }
+
+>>> 查看有沒有WD (Everyone):
+  Get-Service | ForEach-Object { $sd = sc.exe sdshow $_.Name; if ($sd -match 'WD') { $_.Name; $sd } }
+    
 	
 
 
