@@ -1,5 +1,9 @@
 >>> 查看有沒有"有空格的service路徑"可插入exe, 以本地提權:
-  Get-WmiObject -Class win32_service
+  >>>> 最初查看:
+    Get-WmiObject -Class win32_service
+  >>>> 查看準確service名字: 
+  $serviceNameQuery = "<Name>"; Get-Service | Where-Object { $_.DisplayName -like "*$serviceNameQuery*" -or $_.Name -like "*$serviceNameQuery*" }
+	
 
 
 >>> Set-ExecutionPolicy
