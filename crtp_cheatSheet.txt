@@ -4,6 +4,8 @@
   >>>> 查看準確service名字: 
   $serviceNameQuery = "<Name>"; Get-Service | Where-Object { $_.DisplayName -like "*$serviceNameQuery*" -or $_.Name -like "*$serviceNameQuery*" }
   >>>> 一行過: 
+    Get-WmiObject -Class win32_service | Where-Object { $_.PathName -and $_.PathName -notlike '"*' -and $_.PathName -like '* *.exe*' } | Select-Object -ExpandProperty PathName
+    或者
     Get-WmiObject -Class win32_service | Select-Object pathname | Where-Object { $_.pathname -notlike '"*"' -and $_.pathname -like '* *' }
 
 >>> 查看有沒有WD (Everyone):
